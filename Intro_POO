@@ -1,0 +1,36 @@
+class Pessoa:
+	# construtor
+	def  __init__(self, nome, idade):
+		self.nome = nome
+		self.idade = idade
+	# É preciso usar self para acessar qualquer atributo da instancia
+	def imprimir_nome(self):
+		print(self.nome)
+
+
+
+p = Pessoa("Marcos",28)
+print(p.nome)
+print(p.idade)
+p.imprimir_nome()
+
+class Conta:
+
+	def __init__(self, cliente, numero):
+		self.cliente = cliente
+		self.numero = numero
+
+# ContaEspecial Herdando de conta
+class ContaEspecial(Conta):
+	def __init__(self,cliente,numero, limite = 0):
+		#Usamos as definiçoes ja escritas.
+		Conta.__init__(self,cliente,numero)
+		self.limite = limite
+
+conta = ContaEspecial("Lucas","12345678",100)
+print(conta.limite)
+
+conta = Conta("Lucas","12345678")
+print(conta.numero)
+
+		
