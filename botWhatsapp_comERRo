@@ -1,0 +1,33 @@
+from selenium import webdriver 
+import time
+
+class WhatsappBot:
+	def __init__(self):
+		self.mensagem = "Alou Alou Alou"
+		self.grupos = ["Salvar"]
+		options = webdriver.ChromeOptions()
+		options.add_argument('lan=pt-br')
+		self.driver = webdriver.Chrome(executable_path=r'./chromedriver.exe')
+
+	def EnviarMensagens(self):
+#<span dir="auto" title="Salvar" class="_1wjpf _3NFp9 _3FXB1"><span class="matched-text _3FXB1">Salva</span>r</span>		
+#<div tabindex="-1" class="_3F6QL _2WovP">
+#<span data-icon="send" class="">
+		self.driver.get("https://web.whatsapp.com/")
+		time.sleep(150)	
+		for grupo in self.grupos: 
+
+			grupo =	self.driver.find_element_by_css_selector("span._1wjpf _3NFp9 _3FXB1")
+			time.sleep(3)
+			grupo.click()
+			chat_box = self.driver.find_element_by_class_name('_3F6QL _2WovP')
+			time.sleep(3)
+			chat_box.click()
+			chat_box.send_keys()
+			botao_enviar = self.driver.find_element_by_xpath("//span[@data-icon='send']")
+			time.sleep(3)
+			botao_enviar.click()
+			time.sleep(5)
+
+bot = WhatsappBot()
+bot.EnviarMensagens()
